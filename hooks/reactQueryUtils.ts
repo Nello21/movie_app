@@ -9,6 +9,7 @@ import { fetchUsers } from "@/services/actions/users/fetchUsers";
 import { deleteMovie } from "@/services/actions/movies/deleteMovie";
 import { createMovie } from "@/services/actions/movies/createMovie";
 import { MovieFormValues } from "@/shared/types/types";
+import { deleteFromFavorites } from "@/services/actions/profile/deleteFavorite";
 
 export function useRegister() {
   return useMutation(registerUser);
@@ -62,9 +63,21 @@ export function useProfile() {
   return useQuery("profile", fetchProfile);
 }
 
-export const useAddToFavorites = () => {
+export const useAddFavorite = () => {
   const queryClient = useQueryClient();
   return useMutation(addToFavorites, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("profile");
+    },
+    onError: (error) => {
+      console.error("Failed to add movie:", error);
+    },
+  });
+};
+
+export const useDeleteFavorite = () => {
+  const queryClient = useQueryClient();
+  return useMutation(deleteFromFavorites, {
     onSuccess: () => {
       queryClient.invalidateQueries("profile");
     },

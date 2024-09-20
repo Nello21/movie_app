@@ -42,7 +42,7 @@ export const Header: FC<HeaderProps> = ({ className }) => {
               </Button>
             </Link>
           ) : (
-            <Link href="/login">
+            <Link href="/register">
               <Button variant="outline" className="flex gap-1 items-center">
                 <User width={20} height={20} />
                 <span className="max-[640px]:hidden">Войти</span>

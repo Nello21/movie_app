@@ -16,6 +16,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useLogin } from "@/hooks/reactQueryUtils";
 
 export default function LoginPage() {
@@ -85,6 +91,16 @@ export default function LoginPage() {
               )}
             />
             <Button type="submit">{"Войти"}</Button>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1" className="border-b-0">
+                <AccordionTrigger>Нет аккаунта?</AccordionTrigger>
+                <AccordionContent className="w-full">
+                  <Button onClick={() => router.push("/register")}>
+                    Зарегистрироваться
+                  </Button>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </form>
         </Form>
       </div>

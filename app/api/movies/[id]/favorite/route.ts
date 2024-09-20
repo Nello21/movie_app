@@ -68,15 +68,21 @@ export async function DELETE(req: NextRequest) {
     const token = getToken(req);
 
     if (!token) {
-      return new NextResponse("Требуется авторизация", { status: 401 });
+      return new NextResponse(
+        JSON.stringify({ error: "Требуется авторизация" }),
+        { status: 401 }
+      );
     }
 
     const user = await verifyToken(token);
 
     if (!user) {
-      return new NextResponse("Не удалось верифицировать токен", {
-        status: 401,
-      });
+      return new NextResponse(
+        JSON.stringify({ error: "Не удалось верифицировать токен" }),
+        {
+          status: 401,
+        }
+      );
     }
 
     const profile = await prisma.profile.findUnique({
@@ -84,7 +90,9 @@ export async function DELETE(req: NextRequest) {
     });
 
     if (!profile) {
-      return new NextResponse("Профиль не найден", { status: 404 });
+      return new NextResponse(JSON.stringify({ error: "Профиль не найден" }), {
+        status: 404,
+      });
     }
 
     await prisma.profile.update({
@@ -96,10 +104,16 @@ export async function DELETE(req: NextRequest) {
       },
     });
 
-    return new NextResponse("Фильм удален из избранного", { status: 200 });
+    return new NextResponse(
+      JSON.stringify({ message: "Фильм удален из избранного" }),
+      { status: 200 }
+    );
   } catch (error) {
-    return new NextResponse("Ошибка при удалении из избранного", {
-      status: 500,
-    });
+    return new NextResponse(
+      JSON.stringify({ error: "Ошибка при удалении из избранного" }),
+      {
+        status: 500,
+      }
+    );
   }
 }

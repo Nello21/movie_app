@@ -1,5 +1,3 @@
-"use client";
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -43,6 +41,7 @@ export const MovieForm = () => {
     createMovie(values, {
       onSuccess: () => {
         toast({ title: "Успех!", description: "Фильм успешно добавлен!" });
+        router.push("/dashboard");
       },
 
       onError: (error) => {
@@ -55,7 +54,6 @@ export const MovieForm = () => {
         }
       },
     });
-    router.push("/dashboard");
   };
 
   return (
@@ -63,10 +61,12 @@ export const MovieForm = () => {
       <PopoverTrigger asChild>
         <Button variant="outline">Добавить фильм</Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto z-50">
-        <div className="flex justify-center">
-          <div className="flex flex-col bg-black bg-opacity-50 backdrop-blur-sm mt-12 px-6 py-6 rounded-lg my-2 lg:w-2/5 lg:max-w-lg">
-            <h1 className="text-4xl mx-auto font-bold mb-4">Добавить Фильм</h1>
+      <PopoverContent className="w-auto max-w-full z-50">
+        <div className="flex justify-center w-full">
+          <div className="flex flex-col bg-black bg-opacity-50 backdrop-blur-sm mt-12 px-4 py-6 rounded-lg w-full max-w-lg">
+            <h1 className="text-xl md:text-3xl mx-auto font-bold mb-4 text-center">
+              Добавить Фильм
+            </h1>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -76,7 +76,7 @@ export const MovieForm = () => {
                   control={form.control}
                   name="title"
                   render={({ field }) => (
-                    <FormItem className="w-full lg:w-4/6">
+                    <FormItem className="w-full">
                       <FormLabel>Название</FormLabel>
                       <FormControl>
                         <Input placeholder="Название фильма" {...field} />
@@ -90,7 +90,7 @@ export const MovieForm = () => {
                   control={form.control}
                   name="description"
                   render={({ field }) => (
-                    <FormItem className="w-full lg:w-4/6">
+                    <FormItem className="w-full">
                       <FormLabel>Описание</FormLabel>
                       <FormControl>
                         <Input
@@ -108,7 +108,7 @@ export const MovieForm = () => {
                   control={form.control}
                   name="genre"
                   render={({ field }) => (
-                    <FormItem className="w-full lg:w-4/6">
+                    <FormItem className="w-full">
                       <FormLabel>Жанры (через запятую)</FormLabel>
                       <FormControl>
                         <Input placeholder="Жанры" {...field} />
@@ -122,7 +122,7 @@ export const MovieForm = () => {
                   control={form.control}
                   name="imageUrl"
                   render={({ field }) => (
-                    <FormItem className="w-full lg:w-4/6">
+                    <FormItem className="w-full">
                       <FormLabel>URL изображения</FormLabel>
                       <FormControl>
                         <Input placeholder="URL изображения" {...field} />
@@ -136,7 +136,7 @@ export const MovieForm = () => {
                   control={form.control}
                   name="rating"
                   render={({ field }) => (
-                    <FormItem className="w-full lg:w-4/6">
+                    <FormItem className="w-full">
                       <FormLabel>Рейтинг</FormLabel>
                       <FormControl>
                         <Input
@@ -152,7 +152,11 @@ export const MovieForm = () => {
                   )}
                 />
 
-                <Button type="submit" className="mt-4" disabled={isLoading}>
+                <Button
+                  type="submit"
+                  className="mt-4 w-full"
+                  disabled={isLoading}
+                >
                   {isLoading ? "Загрузка..." : "Добавить Фильм"}
                 </Button>
               </form>

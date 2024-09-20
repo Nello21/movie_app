@@ -110,8 +110,10 @@ export default function RegisterPage() {
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1" className="border-b-0">
                 <AccordionTrigger>Зарегистрированы?</AccordionTrigger>
-                <AccordionContent>
-                  <Button onClick={() => router.push("/login")}>Войти</Button>
+                <AccordionContent className="w-full">
+                  <Button onClick={() => router.push("/login")}>
+                    Войти в аккаунт
+                  </Button>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

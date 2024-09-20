@@ -57,6 +57,7 @@ export default function ProfilePage() {
                   <MovieCard
                     key={movie.id}
                     movie={movie}
+                    isProfileCard={true}
                     isLoading={isLoading}
                   />
                 ))

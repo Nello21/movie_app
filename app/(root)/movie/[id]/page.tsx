@@ -1,20 +1,22 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useAddToFavorites, useFetchMovie } from "@/hooks/reactQueryUtils";
-import { useParams } from "next/navigation";
+import { useAddFavorite, useFetchMovie } from "@/hooks/reactQueryUtils";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function MoviePage() {
   const { id } = useParams();
+  const router = useRouter();
   const { data, isLoading, error } = useFetchMovie(Number(id));
-  const addToFavorites = useAddToFavorites();
+  const addToFavorites = useAddFavorite();
 
-  if (isLoading) return <p>Loading</p>;
+  if (isLoading) return <div>Loading</div>;
   if (error) return <p>Error loading movie</p>;
 
   const handleAddToFavorites = () => {
     addToFavorites.mutate(Number(id));
+    router.back();
   };
 
   return (
