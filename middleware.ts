@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
         if (user.role === "ADMIN") {
           response.cookies.set("ADMIN", "true");
         }
-        if (pathname === "/dashboard" && user.role !== "ADMIN") {
+        if (pathname.startsWith("/dashboard") && user.role !== "ADMIN") {
           return NextResponse.redirect(new URL("/", request.url));
         }
 
@@ -31,7 +31,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (pathname === "/dashboard" || pathname === "/profile") {
+  if (pathname.startsWith("/dashboard") || pathname.startsWith("/profile")) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
