@@ -90,12 +90,15 @@ export default function LoginPage() {
                 </FormItem>
               )}
             />
-            <Button type="submit">{"Войти"}</Button>
+            <Button type="submit">Войти</Button>
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1" className="border-b-0">
                 <AccordionTrigger>Нет аккаунта?</AccordionTrigger>
                 <AccordionContent className="w-full">
-                  <Button onClick={() => router.push("/register")}>
+                  <Button
+                    type="button"
+                    onClick={() => router.push("/register")}
+                  >
                     Зарегистрироваться
                   </Button>
                 </AccordionContent>

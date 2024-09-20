@@ -1,12 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { loginOut } from "@/services/auth/logout";
+import { logOut } from "@/services/auth/logout";
 import { useCallback } from "react";
 
 export function LogoutButton() {
   const handleLogout = useCallback(async () => {
-    await loginOut();
+    await logOut();
     window.location.reload();
   }, []);
 

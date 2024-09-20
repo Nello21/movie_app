@@ -1,4 +1,4 @@
-export async function loginOut() {
+export async function logOut() {
   const res = await fetch("/api/logout", {
     method: "POST",
   });

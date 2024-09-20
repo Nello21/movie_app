@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "@/features/searchBar";
-import { loginOut } from "@/services/auth/logout";
+import { logOut } from "@/services/auth/logout";
 import { useSearchParams } from "next/navigation";
 import { useFetchMovies, useUsers } from "@/hooks/reactQueryUtils";
 import { Movie, User } from "@prisma/client";
@@ -43,7 +43,7 @@ export default function Dashboard() {
   }, [movies, query]);
 
   const handleLogout = async () => {
-    await loginOut();
+    await logOut();
     window.location.reload();
   };
 
