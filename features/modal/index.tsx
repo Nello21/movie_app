@@ -16,7 +16,7 @@ export const Modal: React.FC<Props> = ({ className, children }) => {
 
   return (
     <Dialog open={true} onOpenChange={() => router.back()}>
-      <DialogTitle>Фильм</DialogTitle>
+      <DialogTitle className="hidden">Фильм</DialogTitle>
       <DialogContent
         className={cn(
           "flex flex-col p-0 w-1/2 max-w-[1060px] min-h-[300px] lg:min-h-[400px] bg-slate-600 bg-opacity-50 backdrop-blur-md overflow-hidden",

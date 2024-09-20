@@ -29,7 +29,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, isLoading }) => {
           width={220}
           height={300}
           placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/LUBz@BWC-;Rj*0WBoLayXSV@jEof"
+          blurDataURL={movie.imageUrl}
           draggable={false}
           className="rounded-md h-full w-full object-cover object-center pointer-events-none select-none"
         />

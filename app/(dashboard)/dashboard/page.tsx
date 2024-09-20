@@ -47,6 +47,10 @@ export default function Dashboard() {
     window.location.reload();
   };
 
+  if (usersIsloading || moviesIsloading) {
+    return <div>Загрузка...</div>;
+  }
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -120,12 +124,16 @@ export default function Dashboard() {
               </div>
             )}
           </div>
-
-          {activeTable === "users" ? (
-            <UserTable users={filteredUsers} isLoading={usersIsloading} />
-          ) : (
-            <MoviesTable movies={filteredMovies} isLoading={moviesIsloading} />
-          )}
+          <Suspense>
+            {activeTable === "users" ? (
+              <UserTable users={filteredUsers} isLoading={usersIsloading} />
+            ) : (
+              <MoviesTable
+                movies={filteredMovies}
+                isLoading={moviesIsloading}
+              />
+            )}
+          </Suspense>
         </main>
       </div>
     </div>
