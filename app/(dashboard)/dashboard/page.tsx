@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Home, Film, Users2, User as UserIcon } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,9 +16,9 @@ import { loginOut } from "@/services/auth/logout";
 import { useSearchParams } from "next/navigation";
 import { useFetchMovies, useUsers } from "@/hooks/reactQueryUtils";
 import { Movie, User } from "@prisma/client";
-import UserTable from "@/entities/userTable";
-import MoviesTable from "@/entities/moviesTable";
-import MovieForm from "@/features/addMovieForm";
+import { UserTable } from "@/entities/userTable";
+import { MoviesTable } from "@/entities/moviesTable";
+import { MovieForm } from "@/features/addMovieForm";
 
 export default function Dashboard() {
   const { data: users, isLoading: usersIsloading } = useUsers();
@@ -80,11 +80,13 @@ export default function Dashboard() {
       <div className="flex flex-col sm:gap-4 sm:pl-14">
         <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4">
           <div className="relative ml-auto">
-            <SearchBar
-              placeholder={
-                activeTable === "users" ? "Найти пользователя" : "Найти фильм"
-              }
-            />
+            <Suspense>
+              <SearchBar
+                placeholder={
+                  activeTable === "users" ? "Найти пользователя" : "Найти фильм"
+                }
+              />
+            </Suspense>
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

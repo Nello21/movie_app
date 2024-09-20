@@ -14,7 +14,7 @@ interface UserTable {
   isLoading: boolean;
 }
 
-export default function UserTable({ users, isLoading }: UserTable) {
+export const UserTable = ({ users, isLoading }: UserTable) => {
   if (isLoading) {
     return <div>Загрузка...</div>;
   }
@@ -59,4 +59,4 @@ export default function UserTable({ users, isLoading }: UserTable) {
       </TableBody>
     </Table>
   );
-}
+};

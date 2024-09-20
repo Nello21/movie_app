@@ -14,7 +14,6 @@ interface HeaderProps {
 
 export const Header: FC<HeaderProps> = ({ className }) => {
   const { isAuth, isAdmin } = useCookAuth();
-  console.log(isAuth, isAdmin);
 
   return (
     <nav

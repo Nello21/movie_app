@@ -23,7 +23,7 @@ interface MovieTable {
   isLoading: boolean;
 }
 
-export default function MoviesTable({ movies, isLoading }: MovieTable) {
+export const MoviesTable = ({ movies, isLoading }: MovieTable) => {
   const { mutate: deleteMovie } = useDeleteMovie();
 
   const handleDelete = (movieId: number) => {
@@ -89,4 +89,4 @@ export default function MoviesTable({ movies, isLoading }: MovieTable) {
       </TableBody>
     </Table>
   );
-}
+};

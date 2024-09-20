@@ -23,7 +23,7 @@ import {
   PopoverTrigger,
 } from "@radix-ui/react-popover";
 
-export default function MovieForm() {
+export const MovieForm = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { mutate: createMovie, isLoading } = useCreateMovie();
@@ -162,4 +162,4 @@ export default function MovieForm() {
       </PopoverContent>
     </Popover>
   );
-}
+};
