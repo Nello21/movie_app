@@ -34,11 +34,16 @@ export const MovieCard: React.FC<MovieCardProps> = ({
       {isProfileCard && (
         <Button
           size="icon"
-          className="absolute items-center top-[-10px] right-[-10px] overflow-hidden rounded-full z-20 hover:scale-105 transition-transform"
+          className="absolute flex items-center top-[-10px] right-[-10px] overflow-hidden rounded-full z-20 hover:scale-105 transition-transform"
           variant={"outline"}
           onClick={handleDeleteFromFavorites}
         >
-          <CircleX width={25} height={25} color="darkred" />
+          <CircleX
+            width={25}
+            height={25}
+            color="darkred"
+            className="overflow-hidden rounded-full flex items-center"
+          />
         </Button>
       )}
       <div className="relative w-full h-full">
