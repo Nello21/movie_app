@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useAddFavorite, useFetchMovie } from "@/hooks/reactQueryUtils";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import Loading from "../loading";
 
 export default function MoviePage() {
   const { id } = useParams();
@@ -11,7 +12,7 @@ export default function MoviePage() {
   const { data, isLoading, error } = useFetchMovie(Number(id));
   const addToFavorites = useAddFavorite();
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <Loading />;
   if (error) return <p>Error loading movie</p>;
 
   const handleAddToFavorites = () => {

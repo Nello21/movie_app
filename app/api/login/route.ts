@@ -28,10 +28,5 @@ export async function POST(req: Request) {
     secure: process.env.NODE_ENV === "production",
   });
 
-  cookieStore.set("isAuth", "true");
-  if (user.role === "ADMIN") {
-    cookieStore.set("ADMIN", "true");
-  }
-
   return response;
 }

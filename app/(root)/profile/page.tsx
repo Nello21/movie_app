@@ -5,12 +5,13 @@ import { useProfile } from "@/hooks/reactQueryUtils";
 import { Movie } from "@prisma/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MovieCard } from "@/shared/movieCard";
+import Loading from "../loading";
 
 export default function ProfilePage() {
   const { data, error, isLoading } = useProfile();
 
   if (isLoading) {
-    return <p className="text-center">Загрузка...</p>;
+    return <Loading />;
   }
 
   if (error) {

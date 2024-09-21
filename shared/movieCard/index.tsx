@@ -11,7 +11,7 @@ import { useDeleteFavorite } from "@/hooks/reactQueryUtils";
 interface MovieCardProps {
   isProfileCard?: boolean;
   movie: Movie;
-  isLoading: boolean;
+  isLoading?: boolean;
 }
 
 export const MovieCard: React.FC<MovieCardProps> = ({

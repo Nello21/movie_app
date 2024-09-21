@@ -6,14 +6,17 @@ import { Clapperboard, User } from "lucide-react";
 import { MonitorCog } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useCookAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/reactQueryUtils";
+import { HeaderSkeleton } from "../skeletons/headerSkeleton";
 
 interface HeaderProps {
   className?: string;
 }
 
 export const Header: FC<HeaderProps> = ({ className }) => {
-  const { isAuth, isAdmin } = useCookAuth();
+  const { data: user, isLoading } = useAuth();
+
+  if (isLoading) return <HeaderSkeleton />;
 
   return (
     <nav
@@ -34,7 +37,7 @@ export const Header: FC<HeaderProps> = ({ className }) => {
         </Link>
 
         <div className="flex gap-2">
-          {isAuth ? (
+          {user ? (
             <Link href="/profile">
               <Button variant="outline" className="flex gap-1 items-center">
                 <User width={20} height={20} />
@@ -50,7 +53,7 @@ export const Header: FC<HeaderProps> = ({ className }) => {
             </Link>
           )}
 
-          {isAdmin && (
+          {user && user.role === "ADMIN" && (
             <Link href="/dashboard">
               <Button variant="outline" className="flex gap-1 items-center">
                 <MonitorCog width={20} height={20} />

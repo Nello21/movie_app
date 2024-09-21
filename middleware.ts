@@ -20,11 +20,6 @@ export async function middleware(request: NextRequest) {
   try {
     const user = await verifyToken(token);
     if (user) {
-      response.cookies.set("isAuth", "true");
-      if (user.role === "ADMIN") {
-        response.cookies.set("ADMIN", "true");
-      }
-
       if (pathname.startsWith("/dashboard") && user.role !== "ADMIN") {
         return NextResponse.redirect(new URL("/", request.url));
       }

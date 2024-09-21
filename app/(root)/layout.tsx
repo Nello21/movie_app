@@ -5,6 +5,8 @@ import ReactQueryProvider from "@/entities/reactQueryProvider";
 import { ThemeProvider } from "@/entities/themeProvider";
 import { Header } from "@/shared/header";
 import "../globals.css";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const nunito = Nunito({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -35,10 +37,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ReactQueryProvider>
-            <main className="relative min-h-screen bg-netflix bg-cover bg-center bg-no-repeat bg-fixed">
+            <main className="relative flex-col items-center justify-center min-h-screen bg-netflix bg-cover bg-center bg-no-repeat bg-fixed">
               <Header />
-              {children}
-              {modal}
+              <Suspense fallback={<Loading />}>
+                {children}
+                {modal}
+              </Suspense>
             </main>
             <Toaster />
           </ReactQueryProvider>

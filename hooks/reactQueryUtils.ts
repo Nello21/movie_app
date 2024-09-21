@@ -10,6 +10,7 @@ import { deleteMovie } from "@/services/actions/movies/deleteMovie";
 import { createMovie } from "@/services/actions/movies/createMovie";
 import { MovieFormValues } from "@/shared/types/types";
 import { deleteFromFavorites } from "@/services/actions/profile/deleteFavorite";
+import { authCheck } from "@/services/auth/authCheck";
 
 export function useRegister() {
   return useMutation(registerUser);
@@ -57,6 +58,15 @@ export function useDeleteMovie() {
 
 export function useUsers() {
   return useQuery("users", fetchUsers);
+}
+
+export function useAuth() {
+  return useQuery("user", authCheck, {
+    staleTime: 10 * 60 * 1000,
+    retry: false,
+    refetchOnWindowFocus: false,
+    onError: () => {},
+  });
 }
 
 export function useProfile() {
