@@ -4,5 +4,6 @@ export async function authCheck() {
   if (!res.ok) {
     throw new Error("Ошибка верификации");
   }
+
   return res.json();
 }

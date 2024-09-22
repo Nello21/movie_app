@@ -65,7 +65,9 @@ export function useAuth() {
     staleTime: 10 * 60 * 1000,
     retry: false,
     refetchOnWindowFocus: false,
-    onError: () => {},
+    onError: () => {
+      return null;
+    },
   });
 }
 

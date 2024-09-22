@@ -30,7 +30,7 @@ export default function MoviesPage() {
   return (
     <div className="min-h-screen bg-black bg-opacity-50">
       <div className="flex flex-col gap-8 items-center container mx-auto py-8 px-4 lg:px-8 lg:max-w-[1128px]">
-        <h1 className="text text-3xl md:text-4xl lg:text-5xl uppercase mb-4 font-bold">
+        <h1 className="text text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase mb-4 font-bold">
           фильмы
         </h1>
 
@@ -40,7 +40,7 @@ export default function MoviesPage() {
           <div className="text-center text-lg">Фильмы не найдены</div>
         ) : (
           <motion.div layout>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid max-[360px]:grid-cols-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               {filteredMovies.map((movie: Movie) => (
                 <MovieCard key={movie.id} movie={movie} isLoading={isLoading} />
               ))}

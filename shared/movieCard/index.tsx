@@ -58,7 +58,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
           className="rounded-md h-full w-full object-cover object-center pointer-events-none select-none"
         />
       </div>
-      <h1 className="text-md lg:text-xl font-bold">{movie.title}</h1>
+      <h1 className="text-md lg:text-xl font-bold text-wrap">{movie.title}</h1>
     </>
   );
 
